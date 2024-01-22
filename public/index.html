@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Qlik Sense Object</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body>
+    <div class="container mx-auto">
+      <h1 class="mb-8 mt-8 text-2xl text-center font-medium">
+        Qlik Sense Object
+      </h1>
+
+      <table class="table-auto mt-8 border-collapse">
+        <thead>
+          <tr></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Fetch JSON data and add to table
+      fetch("/table")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("data", data);
+
+          // Get the table headers
+          let headers = data.headers;
+          console.log("headers", headers);
+
+          const tableHead = document.querySelector("thead tr");
+          tableHead.innerHTML = "";
+          headers.forEach((header) => {
+            const th = document.createElement("th");
+            th.classList.add(
+              "p-2",
+              "border",
+              "border-slate-300",
+              "bg-slate-200",
+              "text-xs"
+            );
+            th.textContent = header;
+            tableHead.appendChild(th);
+          });
+          // Get the table body
+          let body = data.body;
+          const tableBody = document.querySelector("tbody");
+          tableBody.innerHTML = "";
+          body.forEach((row) => {
+            const tr = document.createElement("tr");
+            Object.values(row).forEach((value) => {
+              const td = document.createElement("td");
+              td.classList.add(
+                "border",
+                "p-2",
+                "border-slate-300",
+                "text-sm",
+                "text-center"
+              );
+              td.textContent = value;
+              tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+          });
+        });
+    </script>
+  </body>
+</html>
