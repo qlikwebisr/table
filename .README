@@ -1,6 +1,6 @@
 # Table
 
-### Web application for that returns data from Qlik Sense SaaS object 
+### Web application that returns data from Qlik Sense SaaS object 
 
 ### Settings file
 ./server/settings.js
