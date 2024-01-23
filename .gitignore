@@ -1,4 +1,5 @@
 server/node_modules
 server/settings.js
+server/settings.js2.txt
 server/logs
 package-lock.json
